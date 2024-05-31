@@ -5,7 +5,13 @@ def create_inventory(items):
     :param items: list - list of items to create an inventory from.
     :return: dict - the inventory dictionary.
     """
-    return {}
+    set1 = set (items)
+    tupla = tuple (items)
+    mapa = dict (set1)
+    for elemento in set1:
+        num = tupla.count (elemento)
+        mapa[elemento] = num
+    return {mapa}
 
 
 def add_items(inventory, items):
@@ -15,8 +21,13 @@ def add_items(inventory, items):
     :param items: list - list of items to update the inventory with.
     :return: dict - the inventory updated with the new items.
     """
-    return {}
-
+    set1 = set (items)
+    tupla = tuple (items)
+    mapa = inventory
+    for elemento in set1:
+        num = tupla.count (elemento)
+        inventory[elemento] = num + mapa[elemento]
+    return (inventory)
 
 def decrement_items(inventory, items):
     """Decrement items in inventory using elements from the `items` list.
@@ -25,7 +36,13 @@ def decrement_items(inventory, items):
     :param items: list - list of items to decrement from the inventory.
     :return: dict - updated inventory with items decremented.
     """
-    return {}
+    set1 = set (items)
+    tupla = tuple (items)
+    mapa = inventory
+    for elemento in set1:
+        num = tupla.count (elemento)
+        inventory[elemento] = num - mapa[elemento]
+    return (inventory)
 
 
 def remove_item(inventory, item):
@@ -35,7 +52,12 @@ def remove_item(inventory, item):
     :param item: str - item to remove from the inventory.
     :return: dict - updated inventory with item removed. Current inventory if item does not match.
     """
-    return {}
+    if item in inventory.keys() == true:
+        del inventory [item]
+        return (inventory)
+
+    else:
+        return (inventory)
 
 
 def list_inventory(inventory):
@@ -44,5 +66,5 @@ def list_inventory(inventory):
     :param inventory: dict - an inventory dictionary.
     :return: list of tuples - list of key, value pairs from the inventory dictionary.
     """
-    return {}
+    return (inventory.items())
 
