@@ -7,11 +7,11 @@ def create_inventory(items):
     """
     set1 = set (items)
     tupla = tuple (items)
-    mapa = dict (set1)
+    mapa = {}
     for elemento in set1:
         num = tupla.count (elemento)
         mapa[elemento] = num
-    return {mapa}
+    return (mapa)
 
 
 def add_items(inventory, items):
@@ -26,7 +26,10 @@ def add_items(inventory, items):
     mapa = inventory
     for elemento in set1:
         num = tupla.count (elemento)
-        inventory[elemento] = num + mapa[elemento]
+        if elemento in inventory:
+            inventory[elemento] = num + mapa[elemento]
+        else:
+            inventory[elemento] = num
     return (inventory)
 
 def decrement_items(inventory, items):
@@ -41,7 +44,9 @@ def decrement_items(inventory, items):
     mapa = inventory
     for elemento in set1:
         num = tupla.count (elemento)
-        inventory[elemento] = num - mapa[elemento]
+        if num > mapa[elemento]:
+            num = mapa[elemento]
+        inventory[elemento] = mapa[elemento] - num
     return (inventory)
 
 
@@ -52,7 +57,7 @@ def remove_item(inventory, item):
     :param item: str - item to remove from the inventory.
     :return: dict - updated inventory with item removed. Current inventory if item does not match.
     """
-    if item in inventory.keys() == true:
+    if item in inventory.keys():
         del inventory [item]
         return (inventory)
 
@@ -66,5 +71,9 @@ def list_inventory(inventory):
     :param inventory: dict - an inventory dictionary.
     :return: list of tuples - list of key, value pairs from the inventory dictionary.
     """
+    for elemento in inventory.keys():
+        if inventory[elemento] == 0:
+            del inventory [elemento]
     return (inventory.items())
+
 
